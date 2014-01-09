@@ -1,0 +1,83 @@
+<html>
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+<link rel="stylesheet" href="css/horizontal.css">
+<script src="js/sly.min.js"></script>
+<style>
+img{
+  width: 227px;
+}
+</style>
+<script>
+	$(document).ready(function() {
+		  var $wrap  = $('.wrap');
+		  
+          var options = {
+                horizontal: 1,
+                itemNav: 'forceCentered',
+                smart: 1,
+                activateMiddle: 1,
+                activateOn: 'click',
+                mouseDragging: 1,
+                touchDragging: 1,
+                releaseSwing: 1,
+                startAt: 0,
+                scrollBar: $wrap.find('.scrollbar'),
+                scrollBy: 1,
+                speed: 600,
+                elasticBounds: 1,
+                easing: 'swing',
+                clickBar: 1,
+                // Buttons
+                prev: $('.prev'),
+                next: $('.next')
+            };
+
+		  var sly = new Sly(jQuery("#effects"), options, {
+		    //load: function () {alert("hi");},
+		    active: function(eventName, itemIndex){
+               var selected_store = $("#storefronts").find("li").eq(itemIndex).attr("storeid");
+               $("#enterstore").attr("href", "retailer_page.php?store_id=" + selected_store); 
+            }
+		  });
+		  
+		  sly.init();
+
+		// Call Sly on frame
+
+            
+         /*   
+            
+            $('#effects').sly("on", "active", 
+             function(eventName, itemIndex){
+               var selected_store = $("#storefronts").find("li").eq(itemIndex).attr("storeid");
+               $("#enterstore").attr("href", "retailer_page.php?store_id=" + selected_store); 
+            });
+           */ 
+
+
+    });
+</script>
+</head>
+<body>
+      <div class="wrap"style="max-width: 600px;">
+			<div class="scrollbar">
+				<div class="handle">
+					<div class="mousearea"></div>
+				</div>
+			</div>
+      <div>   
+		<div class="frame effects" id="effects">
+			<ul id="storefronts">
+             <li storeid='14:0'> <img src='images/storefronts/tarzian_west.png'></li><li storeid='14:1'> <img src='images/storefronts/geartogo.png'></li>  
+            </ul>
+			</div>
+
+			<div class="controls center">
+				<button class="btn prev"><!--<i class="icon-chevron-left"></i>--><- prev</button>
+				<a class="btn btn-primary" href="#" id="enterstore">Enter Store</a>
+				<button class="btn next">next -><!--<i class="icon-chevron-right"></i>--></button>
+			</div>
+		</div>
+</body>
+</html>
